@@ -16,12 +16,18 @@ class App extends StatelessWidget {
     final _appRouter = AppRouter();
 
     return BlocProvider<SettingsBloc>(
-        create: (_) => SettingsBloc(),
-        child: MaterialApp.router(
-            debugShowCheckedModeBanner: true,
-            routerDelegate: _appRouter.delegate(),
-            routeInformationParser: _appRouter.defaultRouteParser(),
-            title: 'Flutter Starter Application',
-            theme: ThemeData(primarySwatch: Colors.blue)));
+        lazy: false,
+        create: (context) => SettingsBloc(),
+        child: BlocBuilder<SettingsBloc, SettingsBlocState>(
+          builder: (context, SettingsBlocState state) {
+            return MaterialApp.router(
+                debugShowCheckedModeBanner: true,
+                routerDelegate: _appRouter.delegate(),
+                routeInformationParser: _appRouter.defaultRouteParser(),
+                title: 'Flutter Starter Application',
+                theme: state.theme);
+          },
+        ),
+        );
   }
 }
