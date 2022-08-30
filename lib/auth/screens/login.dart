@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_starter/global_bloc/index.dart';
 import 'package:flutter_starter/theme/index.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -65,10 +66,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(onPressed: (){
                 context.read<SettingsBloc>().add(ChangeTheme(ThemeName.light));
-              }, child: Text('Light')),
+              }, child: const Text('Light')),
               TextButton(onPressed: (){
                 context.read<SettingsBloc>().add(ChangeTheme(ThemeName.dark));
-              }, child: Text('Dark')),
+              }, child: const Text('Dark')),
+              TextButton(onPressed: (){
+                context.read<SettingsBloc>().add(ChangeLocale(const Locale('en')));
+              }, child: Text(AppLocalizations.of(context)!.login)),
+              TextButton(onPressed: (){
+                context.read<SettingsBloc>().add(ChangeLocale(const Locale('de')));
+              }, child: Text(AppLocalizations.of(context)!.signup)),
             ],
           )
         ),

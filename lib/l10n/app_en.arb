@@ -1,0 +1,30 @@
+{
+  "email": "Email",
+  "@email": {
+    "description": "Email"
+  },
+  "fgtPwd": "Forgot Password",
+  "@fgtPwd": {
+    "description": "Forgot password"
+  },
+  "language": "English",
+  "@language": {
+    "description": "The current language"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login"
+  },
+  "signup": "Signup",
+  "@signup": {
+    "description": "Sign up"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Username"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password"
+  }
+}

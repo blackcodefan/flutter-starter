@@ -10,5 +10,7 @@ class SettingsBloc extends Bloc<SettingsBlocEvent, SettingsBlocState>{
   SettingsBloc() : super(SettingsState()){
     on<ChangeTheme>((event, emit) =>
         emit(SettingsBlocState.clone(state, themeName: event.themeName)));
+    on<ChangeLocale>((event, emit) =>
+        emit(SettingsState.clone(state, locale: event.locale)));
   }
 }

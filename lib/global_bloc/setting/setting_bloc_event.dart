@@ -10,3 +10,9 @@ class ChangeTheme extends SettingsBlocEvent{
 
   ChangeTheme(this.themeName);
 }
+
+class ChangeLocale extends SettingsBlocEvent{
+  final Locale locale;
+
+  ChangeLocale(this.locale);
+}
