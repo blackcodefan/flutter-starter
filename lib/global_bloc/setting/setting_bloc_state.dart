@@ -26,8 +26,6 @@ class SettingsBlocState implements SettingsBlocStateInterface {
   ThemeData get theme {
 
     switch (themeName) {
-      case ThemeName.primary:
-        return primaryTheme;
       case ThemeName.light:
         return lightTheme;
       case ThemeName.dark:
@@ -40,10 +38,10 @@ class SettingsBlocState implements SettingsBlocStateInterface {
   static SettingsBlocState clone(SettingsBlocState model, {ThemeName? themeName}){
     if(model is SettingsState){
       return SettingsStateAlt
-          .clone(model, themeName: model.themeName ?? themeName);
+          .clone(model, themeName: themeName ?? model.themeName);
     }else {
       return SettingsState
-          .clone(model, themeName: model.themeName ?? themeName);
+          .clone(model, themeName: themeName ?? model.themeName);
     }
   }
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_starter/global_bloc/index.dart';
+import 'package:flutter_starter/theme/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -60,6 +63,12 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(8)),
                 ),
               ),
+              TextButton(onPressed: (){
+                context.read<SettingsBloc>().add(ChangeTheme(ThemeName.light));
+              }, child: Text('Light')),
+              TextButton(onPressed: (){
+                context.read<SettingsBloc>().add(ChangeTheme(ThemeName.dark));
+              }, child: Text('Dark')),
             ],
           )
         ),
