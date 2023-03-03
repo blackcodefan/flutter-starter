@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_starter/routes.gr.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,14 +38,14 @@ class _HomePageState extends State<HomePage> {
                 items: [
                   SalomonBottomBarItem(
                       icon: const Icon(Icons.store),
-                      title: const Text('Store')),
+                      title: Text(AppLocalizations.of(context)!.store)),
                   SalomonBottomBarItem(
                       icon: const Icon(Icons.local_shipping),
-                      title: const Text('Shipping')
+                      title: Text(AppLocalizations.of(context)!.shipping)
                   ),
                   SalomonBottomBarItem(
                       icon: const Icon(Icons.person),
-                      title: const Text('Profile')
+                      title: Text(AppLocalizations.of(context)!.profile)
                   ),
                 ],
               ),

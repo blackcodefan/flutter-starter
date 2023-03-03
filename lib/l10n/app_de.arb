@@ -1,9 +1,12 @@
 {
   "email": "Email",
   "fgtPwd": "Passwort vergessen",
-  "language": "Deutsch",
+  "language": "Sprache",
   "login": "Anmeldung",
+  "password": "Passwort",
+  "profile": "Profil",
+  "shipping": "Versand",
   "signup": "Anmelden",
-  "username": "Nutzername",
-  "password": "Passwort"
+  "store": "Geschäft",
+  "username": "Nutzername"
 }

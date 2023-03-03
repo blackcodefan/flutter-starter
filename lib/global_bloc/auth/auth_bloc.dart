@@ -20,15 +20,17 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState>{
       if (user == null) {
         add(UnAuthenticated());
       } else {
-        add(Authenticated(true, UserModel.fromFirebaseUser(user)));
+        if (state.authenticated != true) {
+          add(Authenticated(true, UserModel.fromFirebaseUser(user)));
+        } else {
+          add(UpDateAuthUser(UserModel.fromFirebaseUser(user)));
+        }
       }
     });
 
     on<Authenticated>((event, emit) {
-      if (state.authenticated != true) {
-        router.replaceNamed('/home');
-      }
       emit(AuthBlocState.clone(state, authenticated: event.authenticated, user: event.user));
+      router.replaceNamed('/home');
     });
 
     on<UnAuthenticated>((event, emit) {

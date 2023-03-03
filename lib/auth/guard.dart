@@ -11,6 +11,6 @@ class AuthGuard extends AutoRouteGuard {
       resolver.next(false);
     } else {
         resolver.next(true);
-      }
     }
+  }
 }

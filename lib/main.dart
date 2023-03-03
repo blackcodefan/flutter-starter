@@ -44,7 +44,6 @@ class App extends StatelessWidget {
                 title: 'Flutter Starter Application',
                 locale: state.locale,
                 supportedLocales: L10n.all,
-
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
