@@ -12,8 +12,7 @@ import 'package:flutter_starter/store/index.dart';
       AutoRoute(
           page: SplashPage,
           initial: true,
-          name: 'splash',
-          guards: [AuthGuard]
+          name: 'splash'
       ),
       CustomRoute(
           durationInMilliseconds: 1000,
@@ -21,7 +20,6 @@ import 'package:flutter_starter/store/index.dart';
           path: '/login',
           page: LoginPage,
           name: 'login',
-          guards: [AuthGuard]
       ),
       CustomRoute(
           durationInMilliseconds: 1000,
@@ -29,6 +27,7 @@ import 'package:flutter_starter/store/index.dart';
           path: '/home',
           page: HomePage,
           name: 'home',
+          guards: [AuthGuard],
           children: [
             CustomRoute(
               durationInMilliseconds: 500,

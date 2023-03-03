@@ -33,6 +33,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState>{
 
     on<UnAuthenticated>((event, emit) {
       emit(AuthBlocState.clone(state, authenticated: false, user: null));
+      router.popUntilRoot();
       router.replaceNamed('/login');
     });
 

@@ -83,9 +83,11 @@ class AppRouter extends _i7.RootStackRouter {
 
   @override
   List<_i7.RouteConfig> get routes => [
-        _i7.RouteConfig(Splash.name, path: '/', guards: [authGuard]),
-        _i7.RouteConfig(Login.name, path: '/login', guards: [authGuard]),
-        _i7.RouteConfig(Home.name, path: '/home', children: [
+        _i7.RouteConfig(Splash.name, path: '/'),
+        _i7.RouteConfig(Login.name, path: '/login'),
+        _i7.RouteConfig(Home.name, path: '/home', guards: [
+          authGuard
+        ], children: [
           _i7.RouteConfig(ProfileRoute.name,
               path: 'profile', parent: Home.name),
           _i7.RouteConfig(ShipmentRoute.name,

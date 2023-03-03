@@ -6,8 +6,8 @@ class AuthGuard extends AutoRouteGuard {
   AuthGuard({ this.authBloc });
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
-
-    if(authBloc?.state.authenticated == true){
+    /// Define custom guard logic here
+    if(authBloc?.state.authenticated != true){
       resolver.next(false);
     } else {
         resolver.next(true);
