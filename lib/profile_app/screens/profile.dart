@@ -108,6 +108,12 @@ class _ProfilePage extends State<ProfilePage> {
                 selected: context.read<SettingsBloc>().state.themeIs(ThemeName.system),
                 onTap: () => context.read<SettingsBloc>().add(ClearTheme())
             ),
+            ListTile(
+              visualDensity: const VisualDensity(vertical: -4),
+              title: Text(AppLocalizations.of(context)!.logout),
+              trailing: const Icon(Icons.logout),
+              onTap: () => context.read<AuthBloc>().add(Logout()),
+            ),
           ],
         ),
       ),
