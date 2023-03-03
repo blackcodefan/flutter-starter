@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -8,6 +9,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main () async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   runApp(App(prefs: prefs));
 }
@@ -23,9 +26,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocProvider<SettingsBloc>(
-        lazy: false,
-        create: (context) => SettingsBloc(prefs),
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<SettingsBloc>(
+              lazy: false,
+              create: (_) => SettingsBloc(prefs)
+          ),
+          BlocProvider<AuthBloc>(create: (_) => AuthBloc(_)),
+        ],
         child: BlocBuilder<SettingsBloc, SettingsBlocState>(
           builder: (context, SettingsBlocState state) {
             return MaterialApp.router(
@@ -42,7 +50,6 @@ class App extends StatelessWidget {
                 ],
                 theme: state.theme);
           },
-        ),
-        );
+        ));
   }
 }

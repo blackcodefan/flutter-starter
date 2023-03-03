@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_starter/global_bloc/index.dart';
-import 'package:flutter_starter/theme/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:form_validator/form_validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,7 +15,20 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+
+  String email = '';
+  String password = '';
+
+  void signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print(e.message!);
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,57 +40,63 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                validator: (value){
-                  if (value == null || value.isEmpty){
-                    return 'Please enter the email';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.blueAccent),
-                      borderRadius: BorderRadius.circular(8)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(8)),
-                  disabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white24),
-                      borderRadius: BorderRadius.circular(8)),
+              ListTile(
+                title: TextFormField(
+                  validator: ValidationBuilder(localeName: context.read<SettingsBloc>().state.localName).required().email().build(),
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.email,
+                    labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.blueAccent),
+                        borderRadius: BorderRadius.circular(8)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.blueGrey),
+                        borderRadius: BorderRadius.circular(8)),
+                    disabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white24),
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  onSaved: (String? value){
+                    email = value!;
+                  },
                 ),
               ),
-              TextFormField(
-                validator: (value){
-                  if (value == null || value.isEmpty){
-                    return 'Please enter the email';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(8)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
+              ListTile(
+                title: TextFormField(
+                  validator: ValidationBuilder(localeName: context.read<SettingsBloc>().state.localName).required().minLength(6).build(),
+                  decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.password,
+                    labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.blueGrey),
+                        borderRadius: BorderRadius.circular(8)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
                         const BorderSide(color: Colors.blueAccent, width: 2),
-                    borderRadius: BorderRadius.circular(8)),
-                  disabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white24),
-                      borderRadius: BorderRadius.circular(8)),
+                        borderRadius: BorderRadius.circular(8)),
+                    disabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.white24),
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
+                  onSaved: (String? value) {
+                    password = value!;
+                  },
                 ),
               ),
-              TextButton(onPressed: (){
-                context.read<SettingsBloc>().add(ChangeTheme(ThemeName.light));
-              }, child: const Text('Light')),
-              TextButton(onPressed: (){
-                context.read<SettingsBloc>().add(ChangeTheme(ThemeName.dark));
-              }, child: const Text('Dark')),
-              TextButton(onPressed: (){
-                context.read<SettingsBloc>().add(ChangeLocale(const Locale('en')));
-              }, child: Text(AppLocalizations.of(context)!.login)),
-              TextButton(onPressed: (){
-                context.read<SettingsBloc>().add(ChangeLocale(const Locale('de')));
-              }, child: Text(AppLocalizations.of(context)!.signup)),
+              ListTile(
+                title: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(300, 40)
+                    ),
+                    onPressed: (){
+                      if (_formKey.currentState!.validate()){
+                        _formKey.currentState!.save();
+                        signIn();
+                      }
+                    },
+                    child: Text(AppLocalizations.of(context)!.login)
+                ),
+              ),
             ],
           )
         ),
