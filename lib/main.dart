@@ -5,13 +5,18 @@ import 'package:flutter_starter/l10n/l10n.dart';
 import 'package:flutter_starter/routes.gr.dart';
 import 'package:flutter_starter/global_bloc/index.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main () => runApp(App());
+void main () async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(App(prefs: prefs));
+}
 
 
 class App extends StatelessWidget {
 
-  App({Key? key}) : super(key: key);
+  final SharedPreferences prefs;
+  App({Key? key, required this.prefs}) : super(key: key);
 
   final _appRouter = AppRouter();
 
@@ -20,11 +25,11 @@ class App extends StatelessWidget {
 
     return BlocProvider<SettingsBloc>(
         lazy: false,
-        create: (context) => SettingsBloc(),
+        create: (context) => SettingsBloc(prefs),
         child: BlocBuilder<SettingsBloc, SettingsBlocState>(
           builder: (context, SettingsBlocState state) {
             return MaterialApp.router(
-                debugShowCheckedModeBanner: true,
+                debugShowCheckedModeBanner: false,
                 routerDelegate: _appRouter.delegate(),
                 routeInformationParser: _appRouter.defaultRouteParser(),
                 title: 'Flutter Starter Application',

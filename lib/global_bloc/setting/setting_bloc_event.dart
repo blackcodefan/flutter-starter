@@ -16,3 +16,7 @@ class ChangeLocale extends SettingsBlocEvent{
 
   ChangeLocale(this.locale);
 }
+
+class ClearTheme extends SettingsBlocEvent{}
+
+class ClearLocale extends SettingsBlocEvent{}
