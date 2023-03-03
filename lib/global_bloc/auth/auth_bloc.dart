@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_starter/auth_app/index.dart';
 import 'package:flutter_starter/routes.gr.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_starter/auth_app/index.dart';
 
 part 'auth_bloc_event.dart';
 part 'auth_bloc_state.dart';
