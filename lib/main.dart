@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_starter/auth/guard.dart';
 import 'package:flutter_starter/l10n/l10n.dart';
 import 'package:flutter_starter/routes.gr.dart';
 import 'package:flutter_starter/global_bloc/index.dart';
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
   final SharedPreferences prefs;
   App({Key? key, required this.prefs}) : super(key: key);
 
-  final _appRouter = AppRouter();
+  final _appRouter = AppRouter(authGuard: AuthGuard());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class App extends StatelessWidget {
               lazy: false,
               create: (_) => SettingsBloc(prefs)
           ),
-          BlocProvider<AuthBloc>(create: (_) => AuthBloc(_)),
+          BlocProvider<AuthBloc>(create: (_) => AuthBloc(_, router: _appRouter)),
         ],
         child: BlocBuilder<SettingsBloc, SettingsBlocState>(
           builder: (context, SettingsBlocState state) {
@@ -43,6 +44,7 @@ class App extends StatelessWidget {
                 title: 'Flutter Starter Application',
                 locale: state.locale,
                 supportedLocales: L10n.all,
+
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
