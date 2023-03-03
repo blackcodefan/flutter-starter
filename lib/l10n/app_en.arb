@@ -1,12 +1,17 @@
 {
+  "account": "Account",
+  "dark": "Dark",
   "email": "Email",
   "fgtPwd": "Forgot Password",
   "language": "Language",
   "login": "Login",
+  "light": "Light",
   "password": "Password",
   "profile": "Profile",
   "shipping": "Shipping",
   "signup": "Signup",
   "store": "Store",
+  "system": "System",
+  "theme": "Theme",
   "username": "Username"
 }

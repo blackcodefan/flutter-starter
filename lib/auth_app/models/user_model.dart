@@ -7,8 +7,8 @@ class UserModel {
   String? avatar;
   String? firstname;
   String? lastname;
-  String? email;
-  String? phone;
+  String email;
+  String phone;
   bool anonymous;
 
   UserModel({
@@ -39,6 +39,16 @@ class UserModel {
   /// Generates full name using firstname and lastname.
   String fullName() {
     return "$firstname $lastname";
+  }
+
+  String get account {
+    if(email.isNotEmpty) {
+      return email;
+    } else if(phone.isNotEmpty) {
+      return phone;
+    } else {
+      return 'Anonymous';
+    }
   }
 
   /// As its name is saying, this constructor

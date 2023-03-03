@@ -1,12 +1,17 @@
 {
+  "account": "Konto",
+  "dark": "Dunkel",
   "email": "Email",
   "fgtPwd": "Passwort vergessen",
   "language": "Sprache",
+  "light": "Hell",
   "login": "Anmeldung",
   "password": "Passwort",
   "profile": "Profil",
   "shipping": "Versand",
   "signup": "Anmelden",
   "store": "Geschäft",
+  "system": "System",
+  "theme": "Design",
   "username": "Nutzername"
 }
