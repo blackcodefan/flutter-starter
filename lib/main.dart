@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_starter/auth/guard.dart';
+import 'package:flutter_starter/auth_app/guard.dart';
 import 'package:flutter_starter/l10n/l10n.dart';
 import 'package:flutter_starter/routes.gr.dart';
 import 'package:flutter_starter/global_bloc/index.dart';

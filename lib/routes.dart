@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_starter/auth/index.dart';
+import 'package:flutter_starter/auth_app/index.dart';
 import 'package:flutter_starter/home.dart';
 import 'package:flutter_starter/splash.dart';
-import 'package:flutter_starter/profile/index.dart';
-import 'package:flutter_starter/shipment/index.dart';
-import 'package:flutter_starter/store/index.dart';
+import 'package:flutter_starter/profile_app/index.dart';
+import 'package:flutter_starter/shipment_app/index.dart';
+import 'package:flutter_starter/store_app/index.dart';
 
 @MaterialAutoRouter(
     replaceInRouteName: 'Page,Route',

@@ -13,12 +13,12 @@
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
 
-import 'auth/index.dart' as _i2;
+import 'auth_app/index.dart' as _i2;
 import 'home.dart' as _i3;
-import 'profile/index.dart' as _i4;
-import 'shipment/index.dart' as _i5;
+import 'profile_app/index.dart' as _i4;
+import 'shipment_app/index.dart' as _i5;
 import 'splash.dart' as _i1;
-import 'store/index.dart' as _i6;
+import 'store_app/index.dart' as _i6;
 
 class AppRouter extends _i7.RootStackRouter {
   AppRouter(
