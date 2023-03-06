@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,6 +97,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(AppLocalizations.of(context)!.login)
                 ),
               ),
+              TextButton(
+                  onPressed: ()=> context.router.replaceNamed('/register'),
+                  child: Text(AppLocalizations.of(context)!.noAccount)
+              )
             ],
           )
         ),

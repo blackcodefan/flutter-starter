@@ -1,3 +1,5 @@
+import 'package:flutter_starter/auth_app/screens/register.dart';
+
 import 'home.dart';
 import 'splash.dart';
 import 'auth_app/index.dart';
@@ -15,11 +17,18 @@ import 'package:auto_route/auto_route.dart';
           name: 'splash'
       ),
       CustomRoute(
-          durationInMilliseconds: 1000,
+          durationInMilliseconds: 500,
           transitionsBuilder: TransitionsBuilders.fadeIn,
           path: '/login',
           page: LoginPage,
           name: 'login',
+      ),
+      CustomRoute(
+          durationInMilliseconds: 500,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          path: '/register',
+          page: RegisterPage,
+          name: 'register'
       ),
       CustomRoute(
           durationInMilliseconds: 1000,
